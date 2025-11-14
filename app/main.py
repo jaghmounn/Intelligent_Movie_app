@@ -1,3 +1,8 @@
+from dotenv import load_dotenv
+
+# Load environment variables from .env file before importing config
+load_dotenv()
+
 from fastapi import FastAPI
 from app.db.database import Base, engine
 from app.api.movies import router as movie_router
