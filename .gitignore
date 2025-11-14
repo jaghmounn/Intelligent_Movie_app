@@ -1,3 +1,14 @@
 __pycache__/
 .env
+.env.local
+.env.*.local
 *.sqlite3
+venv/
+.vscode/
+*.pyc
+*.pyo
+.DS_Store
+.pytest_cache/
+dist/
+build/
+*.egg-info/
