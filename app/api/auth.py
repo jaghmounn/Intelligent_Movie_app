@@ -12,6 +12,9 @@ from app.db.database import SessionLocal
 from app.models.user import User
 from app.models.user_schema import UserCreate, UserRead, Token, TokenData
 
+
+
+
 router = APIRouter(prefix="/auth", tags=["auth"])
 
 # security
@@ -67,11 +70,14 @@ def get_user_by_username(db: Session, username: str):
 def get_user_by_email(db: Session, email: str):
     return db.query(User).filter(User.email == email).first()
 
-def authenticate_user(db: Session, username: str, password: str):
-    user = get_user_by_username(db, username)
-    if not user or not verify_password(password, user.hashed_password):
+def authenticate_user_by_email(db: Session, email: str, password: str):
+    user = get_user_by_email(db, email)  # Look up by email
+    if not user:
+        return False
+    if not verify_password(password, user.hashed_password):
         return False
     return user
+
 
 
 # -------------------
@@ -99,16 +105,16 @@ def register(user_in: UserCreate, db: Session = Depends(get_db)):
 
 @router.post("/login", response_model=Token)
 def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
-    user = authenticate_user(db, form_data.username, form_data.password)
+    # Use email instead of username
+    user = authenticate_user_by_email(db, form_data.username, form_data.password)
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
+            detail="Incorrect email or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    access_token = create_access_token(data={"sub": user.username})
+    access_token = create_access_token(data={"sub": user.email})
     return {"access_token": access_token, "token_type": "bearer"}
-
 
 # -------------------
 # Current User

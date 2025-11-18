@@ -12,7 +12,6 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-
   email = '';
   password = '';
   errorMsg = '';
@@ -20,13 +19,9 @@ export class LoginComponent {
   constructor(private auth: AuthService, private router: Router) {}
 
   login() {
-    this.errorMsg = '';
     this.auth.login(this.email, this.password).subscribe({
       next: () => this.router.navigate(['/movies']),
-      error: err => {
-        console.error(err);
-        this.errorMsg = err.error?.detail || 'Invalid credentials';
-      }
+      error: err => this.errorMsg = err.error?.detail || 'Login failed'
     });
   }
 }

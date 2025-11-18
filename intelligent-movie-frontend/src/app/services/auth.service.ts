@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs';
+import { tap, Observable } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +13,24 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(email: string, password: string) {
-    return this.http.post<any>(`${this.apiUrl}/login`, { email, password }).pipe(
-      tap(response => {
-        localStorage.setItem('token', response.access_token);
-      })
-    );
-  }
+login(email: string, password: string) {
+  const body = new HttpParams()
+    .set('username', email)
+    .set('password', password);
 
-  register(name: string, email: string, password: string) {
-    return this.http.post<any>(`${this.apiUrl}/register`, { name, email, password });
+  return this.http.post<{ access_token: string }>(
+    `${this.apiUrl}/login`,
+    body.toString(),
+    {
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    }
+  ).pipe(
+    tap(res => localStorage.setItem('token', res.access_token))
+  );
+}
+
+  register(username: string, email: string, password: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/register`, { username, email, password });
   }
 
   logout() {
