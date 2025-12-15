@@ -1,0 +1,64 @@
+<!-- ================= NAVBAR ================= -->
+<nav class="nav">
+  <div class="nav__container">
+    <a routerLink="/" class="nav__logo">
+      Cine<span>Mind</span>
+    </a>
+
+    <div class="nav__links">
+      <a routerLink="/movies">Movies</a>
+      <a routerLink="/featured">Featured</a>
+      <a routerLink="/auth/login">Sign in</a>
+      <a routerLink="/auth/register" class="nav__cta">Sign up</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <!-- background -->
+  <div
+    class="hero__bg"
+    aria-hidden="true"
+  ></div>
+
+  <!-- dark gradient overlay -->
+  <div class="hero__overlay" aria-hidden="true"></div>
+
+  <!-- content -->
+  <div class="hero__content">
+    <span class="hero__eyebrow">Subscribe Now</span>
+
+    <h1 class="hero__title">
+      Discover Movies<br />
+      Made for You
+    </h1>
+
+    <p class="hero__description">
+      Personalized recommendations, intelligent reviews, and
+      hand-picked collections powered by AI.
+    </p>
+
+    <div class="hero__actions">
+      <a routerLink="/featured" class="btn btn--primary">
+        ▶ Watch trailer
+      </a>
+      <a routerLink="/movies" class="btn btn--secondary">
+        Find out more
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FEATURED ================= -->
+<section class="featured">
+  <div class="featured__container">
+    <h2>Featured picks</h2>
+
+    <div class="featured__grid">
+      <div class="card">Featured card 1</div>
+      <div class="card">Featured card 2</div>
+      <div class="card">Featured card 3</div>
+    </div>
+  </div>
+</section>
