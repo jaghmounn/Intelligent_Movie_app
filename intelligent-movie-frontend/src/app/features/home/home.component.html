@@ -1,18 +1,3 @@
-<!-- ================= NAVBAR ================= -->
-<nav class="nav">
-  <div class="nav__container">
-    <a routerLink="/" class="nav__logo">
-      Cine<span>Mind</span>
-    </a>
-
-    <div class="nav__links">
-      <a routerLink="/movies">Movies</a>
-      <a routerLink="/featured">Featured</a>
-      <a routerLink="/auth/login">Sign in</a>
-      <a routerLink="/auth/register" class="nav__cta">Sign up</a>
-    </div>
-  </div>
-</nav>
 
 <!-- ================= HERO ================= -->
 <section class="hero">
@@ -50,15 +35,35 @@
   </div>
 </section>
 
-<!-- ================= FEATURED ================= -->
+<!-- ================= FEATURED MOVIES ================= -->
 <section class="featured">
   <div class="featured__container">
-    <h2>Featured picks</h2>
 
-    <div class="featured__grid">
-      <div class="card">Featured card 1</div>
-      <div class="card">Featured card 2</div>
-      <div class="card">Featured card 3</div>
+    <!-- header -->
+    <div class="featured__header">
+      <h2>Trending Movies</h2>
+
+      <a routerLink="/movies" class="featured__see-all">
+        See all →
+      </a>
     </div>
+
+    <!-- cards -->
+    <div class="featured__grid">
+      <div
+        class="movie-card"
+        *ngFor="let movie of featuredMovies"
+      >
+        <div class="movie-card__image">
+          <img [src]="movie.poster" [alt]="movie.title" />
+        </div>
+
+        <div class="movie-card__content">
+          <h3>{{ movie.title }}</h3>
+          <p>{{ movie.description }}</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
