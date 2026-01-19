@@ -5,7 +5,7 @@
   min-height: 90vh;
   display: flex;
   align-items: flex-end;
-  padding: 6rem 1.5rem 5rem;
+  padding: 1.5rem;
   color: #ffffff;
   overflow: hidden;
 }
@@ -195,3 +195,30 @@ background-image: url("/assets/hero-movie.webp");
   color: #b3b3b3;
   line-height: 1.4;
 }
+
+
+
+/* ================= NEWS SECTION ================= */
+
+.news-section {
+  padding: 4rem 0;
+  background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
+  color: white;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.news-section__container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.home-container {
+  display: flex;
+  gap: 2rem;
+}
+
+.main-content {
+  flex: 1;
+}
+

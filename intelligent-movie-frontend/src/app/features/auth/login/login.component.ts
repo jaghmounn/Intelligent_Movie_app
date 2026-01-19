@@ -1,27 +1,27 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '../../../services/auth.service';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  email = '';
-  password = '';
-  errorMsg = '';
+  loginForm: FormGroup;
 
-  constructor(private auth: AuthService, private router: Router) {}
-
-  login() {
-    this.auth.login(this.email, this.password).subscribe({
-      next: () => this.router.navigate(['/movies']),
-      error: err => this.errorMsg = err.error?.detail || 'Login failed'
+  constructor(private fb: FormBuilder) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
     });
+  }
+
+  onSubmit() {
+    if (this.loginForm.invalid) return;
+
+    console.log('Login Data:', this.loginForm.value);
+    // Call your API here
   }
 }

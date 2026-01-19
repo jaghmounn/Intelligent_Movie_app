@@ -1,0 +1,27 @@
+<nav class="nav">
+  <div class="nav__container">
+    <!-- Logo -->
+    <a routerLink="/" class="nav__logo">
+      Cine<span>Mind</span>
+    </a>
+
+    <!-- Hamburger toggle (mobile) -->
+    <button class="nav__toggle" (click)="toggleMenu()">☰</button>
+
+    <!-- Links -->
+    <div class="nav__links" [class.open]="isMenuOpen">
+        <a routerLink="/movies">Movies</a>
+        <a routerLink="/featured">Featured</a>
+        <a routerLink="/auth/login">Sign in</a>
+        <a routerLink="/auth/register" class="nav__cta">Sign up</a>
+    </div>
+
+      <!-- Authenticated links -->
+      <ng-container *ngIf="isAuthenticated">
+        <a routerLink="/profile" (click)="isMenuOpen=false">Hi, {{ userName }}</a>
+        <a routerLink="/dashboard" (click)="isMenuOpen=false">Dashboard</a>
+        <a class="nav__cta" (click)="logout()">Logout</a>
+      </ng-container>
+
+  </div>
+</nav>

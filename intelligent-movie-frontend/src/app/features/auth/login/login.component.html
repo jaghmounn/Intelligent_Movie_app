@@ -1,20 +1,26 @@
-<div class="auth-container">
-  <h2>Login</h2>
-  <form (ngSubmit)="login()">
-    <div class="form-field">
-      <label>Email</label>
-      <input type="email" [(ngModel)]="email" name="email" required />
-    </div>
+<div class="login-container">
+  <div class="login-card">
+    <h1>Sign In</h1>
 
-    <div class="form-field">
-      <label>Password</label>
-      <input type="password" [(ngModel)]="password" name="password" required />
-    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
-    <button type="submit">Login</button>
+      <label>
+        Email
+        <input type="email" formControlName="email" placeholder="you@example.com"/>
+        <span class="error" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+          Valid email required
+        </span>
+      </label>
 
-    <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
-  </form>
+      <label>
+        Password
+        <input type="password" formControlName="password" placeholder="Enter password"/>
+        <span class="error" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          Password required
+        </span>
+      </label>
 
-  <p class="switch">Don't have an account? <a routerLink="/auth/register">Register</a></p>
+      <button type="submit">Sign In</button>
+    </form>
+  </div>
 </div>

@@ -1,10 +1,8 @@
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { authInterceptor } from './core/interceptors/auth.interceptor';import { provideZard } from '@/shared/core/provider/providezard';
+import { ApplicationConfig } from '@angular/core';
+import { provideHttpClient } from '@angular/common/http';
 
 
-export const appConfig = {
+export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(withInterceptors([authInterceptor,
-    provideZard(),]))
-  ]
+    provideHttpClient()]
 };

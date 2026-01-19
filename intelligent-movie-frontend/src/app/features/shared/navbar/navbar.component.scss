@@ -1,0 +1,103 @@
+/* Navbar wrapper */
+.nav {
+  position: relative;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+}
+
+/* Container for alignment */
+.nav__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.nav__logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.nav__logo span {
+  color: #14b8a6;
+}
+
+/* Links */
+.nav__links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap; /* prevents overflow on small screens */
+}
+
+/* Links style */
+.nav__links a {
+  color: #e5e7eb;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav__links a:hover {
+  color: #ffffff;
+}
+
+/* Call-to-action button */
+.nav__cta {
+  padding: 0.5rem 1rem;
+  background: #ffffff;
+  color: #000000 !important;
+  border-radius: 0.25rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Hamburger toggle (mobile) */
+.nav__toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .nav__toggle {
+    display: block;
+  }
+
+  .nav__links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.9);
+    flex-direction: column;
+    gap: 0;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+  }
+
+  .nav__links.open {
+    max-height: 500px; /* enough to show all links */
+  }
+
+  .nav__links a {
+    padding: 1rem 1.5rem;
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+}
+
+/* Add padding to main content so it doesn't go under navbar */
+:host ::ng-deep main {
+  /* padding-top: 4rem; */
+}
