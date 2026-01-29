@@ -6,7 +6,6 @@ load_dotenv()
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.db.database import Base, engine
-from app.api.movies import router as movie_router
 from app.api import auth as auth_router
 from app.api import reviews as reviews_router
 from app.api import comments as comments_router
@@ -15,6 +14,7 @@ from app.api import recommendations as recommendations_router
 from app.api import user_lists as user_lists_router
 from app.api import search as search_router
 from app.api import analytics as analytics_router
+from app.routers import movies, tv, search
 
 
 app = FastAPI(title="Intelligent Movie App")
@@ -36,7 +36,6 @@ app.add_middleware(
 )
 
 Base.metadata.create_all(bind=engine)
-app.include_router(movie_router)
 app.include_router(auth_router.router)
 app.include_router(reviews_router.router)
 app.include_router(comments_router.router)
@@ -45,5 +44,7 @@ app.include_router(recommendations_router.router)
 app.include_router(user_lists_router.router)
 app.include_router(search_router.router)
 app.include_router(analytics_router.router)
-
+app.include_router(movies.router)
+app.include_router(tv.router)
+app.include_router(search.router)
 

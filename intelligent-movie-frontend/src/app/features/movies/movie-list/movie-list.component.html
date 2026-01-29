@@ -1,4 +1,18 @@
-<section class="movie-list">
-  <h2>Movies</h2>
-  <p>Movie list will render here.</p>
-</section>
+<div class="movie-cards" role="list">
+  <article class="card" *ngFor="let movie of popularMovies" role="listitem" aria-label="{{ movie.title }}">
+    <img
+      class="card-img"
+      [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+      [alt]="movie.title"
+      loading="lazy"
+    />
+    <div class="card-body">
+      <h3 class="card-title">{{ movie.title }}</h3>
+      <div class="card-meta">
+        <span class="rating">⭐ {{ movie.vote_average || '—' }}</span>
+        <span class="release">{{ movie.release_date }}</span>
+      </div>
+      <p class="card-overview">{{ movie.overview }}</p>
+    </div>
+  </article>
+</div>

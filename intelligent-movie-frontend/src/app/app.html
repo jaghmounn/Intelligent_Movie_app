@@ -1,5 +1,5 @@
 <!-- src/app/app.html -->
-<app-navbar></app-navbar>
+<app-navbar *ngIf="!isHome()"></app-navbar>
 
 <router-outlet></router-outlet>
 

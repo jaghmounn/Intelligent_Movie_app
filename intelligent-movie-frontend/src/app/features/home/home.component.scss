@@ -10,6 +10,17 @@
   overflow: hidden;
 }
 
+/* Integrated navbar */
+.hero-navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: transparent !important;
+  backdrop-filter: none !important;
+}
+
 /* ===== CLEAR & SHARP BACKGROUND ===== */
 .hero__bg {
   position: absolute;
@@ -87,6 +98,113 @@ background-image: url("/assets/hero-movie.webp");
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+}
+
+
+.hero-secondary {
+  position: relative;
+  min-height: 100vh;
+  background-image: url("https://images.mubicdn.net/images/artworks/855331/cache-855331-1757021343/images-original.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+}
+
+.hero-secondary__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.75),
+    rgba(0,0,0,0.4)
+  );
+  z-index: 1;
+}
+
+.hero-secondary__container {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* LEFT */
+.hero-secondary__title {
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  margin-bottom: 1rem;
+  color:#f1f1f1;
+
+  /* subtle glow for clarity */
+}
+
+.hero-secondary__description {
+  max-width: 480px;
+  color: #d1d5db;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.hero-secondary__cta {
+  padding: 0.9rem 2.2rem;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  background: white;
+  color: black;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-secondary__cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255,255,255,0.2);
+}
+
+/* RIGHT */
+@keyframes slideInUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  animation: slideInUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.25s; }
+.delay-3 { animation-delay: 0.4s; }
+
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hero-secondary__container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-secondary__description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-secondary__cards {
+    align-items: center;
+  }
 }
 
 /* ================= BUTTONS ================= */
@@ -221,4 +339,3 @@ background-image: url("/assets/hero-movie.webp");
 .main-content {
   flex: 1;
 }
-

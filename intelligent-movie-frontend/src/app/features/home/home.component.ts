@@ -3,18 +3,20 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DxDataGridModule } from 'devextreme-angular';
 import { LatestNewsComponent  } from './latest-news/latest-news.component';
+import { NavbarComponent } from '../shared/navbar/navbar.component';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule, DxDataGridModule,LatestNewsComponent],
+  imports: [CommonModule, RouterModule, DxDataGridModule,LatestNewsComponent, NavbarComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 
   export class HomeComponent {
 
+ 
 
   featuredMovies = [
     {
